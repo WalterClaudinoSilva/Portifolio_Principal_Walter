@@ -1,0 +1,222 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  
+  /* Cores de Tema */
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --color-bg-dark: var(--background);
+  --color-bg-card: var(--card-bg);
+}
+
+:root {
+  /* Default: Deep Ocean (Vibrante e Profundo) */
+  --background: #020617; /* slate-950 */
+  --foreground: #f8fafc;
+  --primary: #38bdf8; /* sky-400 */
+  --secondary: #818cf8; /* indigo-400 */
+  --accent: #c084fc; /* purple-400 */
+  --card-bg: #0f172a; /* slate-900 */
+  --shadow-primary: rgba(56, 189, 248, 0.2);
+}
+
+[data-theme='emerald'] {
+  --background: #022c22; /* emerald-950 */
+  --foreground: #f0fdf4;
+  --primary: #34d399; /* emerald-400 */
+  --secondary: #2dd4bf; /* teal-400 */
+  --accent: #a7f3d0; /* emerald-200 */
+  --card-bg: #064e3b; /* emerald-900 */
+  --shadow-primary: rgba(52, 211, 153, 0.2);
+}
+
+[data-theme='midnight'] {
+  --background: #000000;
+  --foreground: #ffffff;
+  --primary: #818cf8; /* indigo-400 */
+  --secondary: #6366f1; /* indigo-500 */
+  --accent: #fb7185; /* rose-400 */
+  --card-bg: #0a0a0a;
+  --shadow-primary: rgba(129, 140, 248, 0.25);
+}
+
+[data-theme='sunset'] {
+  --background: #1c0a0a;
+  --foreground: #fff7ed;
+  --primary: #fb923c; /* orange-400 */
+  --secondary: #f87171; /* red-400 */
+  --accent: #fcd34d; /* amber-300 */
+  --card-bg: #2d1616;
+  --shadow-primary: rgba(251, 146, 60, 0.2);
+}
+
+[data-theme='cyberpunk'] {
+  --background: #05010d;
+  --foreground: #ffffff;
+  --primary: #f0abfc; /* fuchsia-300 */
+  --secondary: #22d3ee; /* cyan-400 */
+  --accent: #fde047; /* yellow-300 */
+  --card-bg: #11052c;
+  --shadow-primary: rgba(240, 171, 252, 0.3);
+}
+
+[data-theme='forest'] {
+  --background: #052e16; /* green-950 */
+  --foreground: #f0fdf4;
+  --primary: #4ade80; /* green-400 */
+  --secondary: #a3e635; /* lime-400 */
+  --accent: #d9f99d; /* lime-200 */
+  --card-bg: #14532d; /* green-900 */
+  --shadow-primary: rgba(74, 222, 128, 0.2);
+}
+
+[data-theme='slate'] {
+  --background: #0f172a; /* slate-900 */
+  --foreground: #f1f5f9;
+  --primary: #94a3b8; /* slate-400 */
+  --secondary: #cbd5e1; /* slate-300 */
+  --accent: #38bdf8; /* sky-400 */
+  --card-bg: #1e293b; /* slate-800 */
+  --shadow-primary: rgba(148, 163, 184, 0.15);
+}
+
+[data-theme='volcano'] {
+  --background: #270909;
+  --foreground: #fff5f5;
+  --primary: #f87171; /* red-400 */
+  --secondary: #ea580c; /* orange-600 */
+  --accent: #fde047; /* yellow-300 */
+  --card-bg: #450a0a;
+  --shadow-primary: rgba(248, 113, 113, 0.2);
+}
+
+[data-theme='nebula'] {
+  --background: #0f0529;
+  --foreground: #faf5ff;
+  --primary: #a78bfa; /* violet-400 */
+  --secondary: #f472b6; /* pink-400 */
+  --accent: #60a5fa; /* blue-400 */
+  --card-bg: #1e1b4b; /* indigo-950 */
+  --shadow-primary: rgba(167, 139, 250, 0.25);
+}
+
+[data-theme='gold'] {
+  --background: #1c1917; /* stone-900 */
+  --foreground: #fafaf9;
+  --primary: #facc15; /* yellow-400 */
+  --secondary: #d97706; /* amber-600 */
+  --accent: #fef3c7; /* amber-100 */
+  --card-bg: #292524; /* stone-800 */
+  --shadow-primary: rgba(250, 204, 21, 0.2);
+}
+
+/* Temas Sazonais */
+[data-theme='newyear'] {
+  --background: #000c18;
+  --foreground: #ffffff;
+  --primary: #e2e8f0; /* silver */
+  --secondary: #fbbf24; /* gold */
+  --accent: #f8fafc;
+  --card-bg: #001529;
+  --shadow-primary: rgba(226, 232, 240, 0.3);
+}
+
+[data-theme='carnival'] {
+  --background: #0f001a;
+  --foreground: #ffffff;
+  --primary: #f43f5e; /* rose-500 */
+  --secondary: #8b5cf6; /* violet-500 */
+  --accent: #facc15; /* yellow-400 */
+  --card-bg: #1a0033;
+  --shadow-primary: rgba(244, 63, 94, 0.4);
+}
+
+[data-theme='easter'] {
+  --background: #0c0612;
+  --foreground: #faf5ff;
+  --primary: #c084fc; /* lavanda */
+  --secondary: #8b5cf6; /* violet-500 */
+  --accent: #fbbf24; /* gold */
+  --card-bg: #1a0a24;
+  --shadow-primary: rgba(192, 132, 252, 0.3);
+}
+
+[data-theme='halloween'] {
+  --background: #0c0a09; /* stone-950 */
+  --foreground: #fafaf9;
+  --primary: #f97316; /* orange-500 */
+  --secondary: #a855f7; /* purple-500 */
+  --accent: #1c1917;
+  --card-bg: #1c1917;
+  --shadow-primary: rgba(249, 115, 22, 0.4);
+}
+
+[data-theme='christmas'] {
+  --background: #052e16; /* green-950 */
+  --foreground: #ffffff;
+  --primary: #ef4444; /* red-500 */
+  --secondary: #10b981; /* emerald-500 */
+  --accent: #facc15; /* gold */
+  --card-bg: #064e3b;
+  --shadow-primary: rgba(239, 68, 68, 0.3);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1), color 0.5s ease;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+/* Utilitários Modernos */
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.shadow-glow {
+  box-shadow: 0 0 20px -5px var(--shadow-primary);
+}
+
+.shadow-glow-hover:hover {
+  box-shadow: 0 0 30px -5px var(--shadow-primary);
+}
+
+/* Scrollbar Customizada */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--card-bg);
+  border-radius: 10px;
+  border: 2px solid var(--background);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+/* Animação suave para links e botões */
+a, button {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}

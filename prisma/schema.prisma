@@ -1,0 +1,162 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Profile {
+  id        String   @id @default(cuid())
+  name      String
+  title     String
+  bio       String   @db.Text
+  location  String?
+  email     String?
+  phone     String?
+  github    String?
+  linkedin  String?
+  image     String?
+  resumeUrl String?
+  
+  // Site Content
+  theme           String?  @default("default")
+  autoThemeEnabled Boolean @default(false)
+  
+  // Site Content (continued)
+  heroBadge       String?  @default("Professor EBTT | IFAM Campus Manacapuru")
+  heroTitle       String?  @default("Liderando a Inovação com IA")
+  aboutHeadline   String?  @default("Sobre Walter Claudino")
+  aboutHistoryHeadline String? @default("Minha História")
+  projectsHeadline String? @default("Projetos em Destaque")
+  projectsSubheadline String? @default("Inovação aplicada através de pesquisas e desenvolvimentos no IFAM.")
+  
+  // Specialties (Home)
+  specialty1Title String? @default("Inteligência Artificial")
+  specialty1Desc  String? @default("Modelos preditivos e redes neurais aplicadas à resolução de problemas complexos.")
+  specialty2Title String? @default("IoT & Embarcados")
+  specialty2Desc  String? @default("Integração hardware-software com foco em monitoramento e automação inteligente.")
+  specialty3Title String? @default("Visão Computacional")
+  specialty3Desc  String? @default("Processamento de imagens e reconhecimento de padrões para aplicações industriais.")
+
+  // Expertise (Sobre)
+  expertiseHeadline String? @default("Atuação & Expertise")
+  expertise1Title   String? @default("Docência IFAM")
+  expertise1Desc    String? @default("Professor de Ensino Básico, Técnico e Tecnológico (EBTT) no Campus Manacapuru, formando a próxima geração de talentos.")
+  expertise2Title   String? @default("Gestão Estratégica")
+  expertise2Desc    String? @default("Chefe do DEPEX, liderando o Departamento de Extensão e Pesquisa e conectando a academia com o mercado tecnológico.")
+  
+  // Vision (Sobre)
+  visionHeadline    String? @default("Visão de Futuro")
+  visionTitle       String? @default("Impacto Tecnológico")
+  visionDesc        String? @default("Meu objetivo é aplicar Inteligência Artificial e IoT para resolver desafios reais da região amazônica, impulsionando o desenvolvimento tecnológico sustentável.")
+
+  // Footer
+  footerCopyright   String? @default("© 2026 Walter. Todos os direitos reservados.")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Project {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  content     String?
+  image       String?
+  link        String?
+  github      String?
+  featured    Boolean  @default(false)
+  published   Boolean  @default(true)
+  technologies ProjectTechnology[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Experience {
+  id          String   @id @default(cuid())
+  company     String
+  position    String
+  description String
+  startDate   DateTime
+  endDate     DateTime?
+  current     Boolean  @default(false)
+  location    String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Production {
+  id          String   @id @default(cuid())
+  title       String
+  type        String // e.g., "Artigo", "Curso", "Palestra"
+  description String?
+  link        String?
+  date        DateTime
+  published   Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Technology {
+  id       String   @id @default(cuid())
+  name     String   @unique
+  icon     String?
+  category String? // e.g., "Linguagem", "Framework", "IA"
+  projects ProjectTechnology[]
+}
+
+model ProjectTechnology {
+  projectId    String
+  technologyId String
+  project      Project    @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  technology   Technology @relation(fields: [technologyId], references: [id], onDelete: Cascade)
+
+  @@id([projectId, technologyId])
+}
+
+model Message {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  subject   String?
+  message   String
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model PageView {
+  id        String   @id @default(cuid())
+  path      String
+  createdAt DateTime @default(now())
+}
+
+model EventTheme {
+  id               String   @id @default(cuid())
+  name             String
+  themeId          String
+  day              Int      // Dia do evento
+  month            Int      // Mês do evento
+  activeDaysBefore Int      @default(7)
+  activeDaysAfter  Int      @default(3)
+  priority         Int      @default(1)
+  enabled          Boolean  @default(true)
+  message          String?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
