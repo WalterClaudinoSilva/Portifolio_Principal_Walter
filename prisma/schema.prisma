@@ -5,11 +5,12 @@
 
 generator client {
   provider = "prisma-client-js"
+  binaryTargets = ["native", "debian-openssl-1.0.x"]
 }
 
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
+  provider = "sqlite"
+  url      = "file:./dev.db"
 }
 
 model User {
@@ -25,7 +26,7 @@ model Profile {
   id        String   @id @default(cuid())
   name      String
   title     String
-  bio       String   @db.Text
+  bio       String
   location  String?
   email     String?
   phone     String?
